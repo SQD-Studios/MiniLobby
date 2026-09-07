@@ -1,0 +1,4 @@
+name: "PaperPluginTemplate"
+version: "${version}"
+main: net.chamosmp.PaperPluginTemplate
+api-version: "26.2"
