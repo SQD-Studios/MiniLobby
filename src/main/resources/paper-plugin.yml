@@ -1,4 +1,4 @@
-name: "PaperPluginTemplate"
+name: "MiniLobby"
 version: "${version}"
-main: net.chamosmp.PaperPluginTemplate
+main: net.chamosmp.minilobby.MiniLobbyPlugin
 api-version: "26.2"

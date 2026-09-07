@@ -4,7 +4,7 @@ plugins {
     id("com.gradleup.shadow") version "9.6.1"
 }
 
-group = "net.chamosmp"
+group = "net.chamosmp.minilobby"
 version = "1.0.0"
 
 repositories {
@@ -45,7 +45,7 @@ tasks {
     shadowJar {
         configurations = project.configurations.runtimeClasspath.map { setOf(it) }
 
-        relocate("net.chamosmp.sqdlib", "net.chamosmp.(plugin).libs.sqdlib")
+        relocate("net.chamosmp.sqdlib", "net.chamosmp.minilobby.libs.sqdlib")
     }
 
     processResources {
