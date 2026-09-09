@@ -1,0 +1,12 @@
+set-inventory-world:
+
+spawn-location:
+  ==: org.bukkit.Location
+  world_key: minecraft:overworld
+  x: 11.27342259484996
+  y: 63.0
+  z: -57.34954215247522
+  pitch: 60.99703
+  yaw: 4.764764
+
+inventory:
