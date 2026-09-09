@@ -1,4 +1,6 @@
 name: "MiniLobby"
 version: "${version}"
 main: net.chamosmp.minilobby.MiniLobbyPlugin
-api-version: "26.2"
+api-version: "1.21"
+
+folia-supported: true
