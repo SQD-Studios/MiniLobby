@@ -20,3 +20,35 @@ Go to the place you want to store as a spawn and run `/minilobby setspawn`
 Make the inventory you want to make, and run `/minilobby setinventory`, and then run `/minilobby setinventoryworld` for
 the world which the inventory stuff happens in (When a user goes to a world which it doesn't take place in, it won't
 rollback their inventories)
+
+### Permissions
+
+`minilobby.admin`
+Admin commands
+
+Default: op
+
+`minilobby.admin.setspawn`
+/minilobby setspawn
+
+Default: op
+
+`minilobby.admin.setinventory`
+/minilobby setinventory
+
+Default: op
+
+`minilobby.admin.setinventoryworld`
+/minilobby setinventoryworld
+
+Default: op
+
+`minilobby.admin.reload`
+/minilobby reload
+
+Default: op
+
+`minilobby.skipinventory`
+Skip all the inventory stuff
+
+Default: op

@@ -1,7 +1,6 @@
 package net.chamosmp.minilobby.listener;
 
-import net.chamosmp.minilobby.util.InventoryParserUtil;
-import net.chamosmp.sqdlib.paper.util.SchedulerUtil;
+import net.chamosmp.minilobby.util.WorldUtil;
 import net.kyori.adventure.key.Key;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,8 +10,9 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
+
+import static net.chamosmp.minilobby.util.InventoryUtil.setInventoryContents;
 
 public class PlayerInventoryListener implements Listener {
 
@@ -38,36 +38,21 @@ public class PlayerInventoryListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        setInventoryContents(player);
+        setInventoryContents(player, plugin);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerPickupItem(EntityPickupItemEvent event) {
-        if (event.getEntity() instanceof Player p) {
-            final Key configWorldKey = Key.key(plugin.getConfig().getString("set-inventory-configWorldKey", "minecraft:overworld"));
-            final Key playerWorldKey = p.getWorld().getKey().key();
-
-            if (configWorldKey.equals(playerWorldKey)) {
-                event.setCancelled(true);
-            }
+        if (event.getEntity() instanceof Player player) {
+            event.setCancelled(
+                    WorldUtil.isSameWorldAsConfig(player, plugin)
+            );
         }
     }
 
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
         Player p = event.getPlayer();
-        setInventoryContents(p);
-    }
-
-    private void setInventoryContents(Player player) {
-        SchedulerUtil.runForEntity(plugin, player, () -> {
-            final Key configWorldKey = Key.key(plugin.getConfig().getString("set-inventory-configWorldKey", "minecraft:overworld"));
-            final Key playerWorldKey = player.getWorld().getKey().key();
-
-            if (configWorldKey.equals(playerWorldKey)) {
-                PlayerInventory playerInventory = player.getInventory();
-                playerInventory.setContents(InventoryParserUtil.parse(plugin, playerInventory).getContents());
-            }
-        }, null);
+        setInventoryContents(p, plugin);
     }
 }

@@ -4,3 +4,33 @@ main: net.chamosmp.minilobby.MiniLobbyPlugin
 api-version: "1.21"
 
 folia-supported: true
+
+permissions:
+  minilobby.admin:
+    description: Admin commands
+    default: op
+    children:
+      permission.node.child: true
+  minilobby.admin.setspawn:
+    description: /minilobby setspawn
+    default: op
+    children:
+      permission.node.child: true
+  minilobby.admin.setinventory:
+    description: /minilobby setinventory
+    default: op
+    children:
+      permission.node.child: true
+  minilobby.admin.setinventoryworld:
+    description: /minilobby setinventoryworld
+    default: op
+    children:
+      permission.node.child: true
+  minilobby.admin.reload:
+    description: /minilobby reload
+    default: op
+    children:
+      permission.node.child: true
+  minilobby.skipinventory:
+    description: Skip all the inventory stuff
+    default: op
