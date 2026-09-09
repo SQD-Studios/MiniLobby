@@ -8,7 +8,6 @@ public final class WorldUtil {
     private WorldUtil() {
     }
 
-
     public static boolean isSameWorldAsConfig(Player player, Plugin plugin) {
         if (player.hasPermission("minilobby.skipinventory")) return false;
 

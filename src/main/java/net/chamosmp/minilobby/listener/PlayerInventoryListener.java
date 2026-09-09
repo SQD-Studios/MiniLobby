@@ -1,7 +1,5 @@
 package net.chamosmp.minilobby.listener;
 
-import net.chamosmp.minilobby.util.WorldUtil;
-import net.kyori.adventure.key.Key;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,6 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 
 import static net.chamosmp.minilobby.util.InventoryUtil.setInventoryContents;
+import static net.chamosmp.minilobby.util.WorldUtil.isSameWorldAsConfig;
 
 public class PlayerInventoryListener implements Listener {
 
@@ -25,12 +24,9 @@ public class PlayerInventoryListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerInteract(InventoryClickEvent event) {
         if (event.getWhoClicked() instanceof Player p) {
-            final Key configWorldKey = Key.key(plugin.getConfig().getString("set-inventory-configWorldKey", "minecraft:overworld"));
-            final Key playerWorldKey = p.getWorld().getKey().key();
-
-            if (configWorldKey.equals(playerWorldKey)) {
-                event.setCancelled(true);
-            }
+            event.setCancelled(
+                    isSameWorldAsConfig(p, plugin)
+            );
         }
     }
 
@@ -45,7 +41,7 @@ public class PlayerInventoryListener implements Listener {
     public void onPlayerPickupItem(EntityPickupItemEvent event) {
         if (event.getEntity() instanceof Player player) {
             event.setCancelled(
-                    WorldUtil.isSameWorldAsConfig(player, plugin)
+                    isSameWorldAsConfig(player, plugin)
             );
         }
     }

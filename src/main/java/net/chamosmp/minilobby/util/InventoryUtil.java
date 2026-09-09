@@ -39,6 +39,8 @@ public final class InventoryUtil {
 
     public static void setInventoryContents(Player player, Plugin plugin) {
         SchedulerUtil.runForEntity(plugin, player, () -> {
+            if (player.hasPermission("minilobby.skipinventory")) return;
+
             if (WorldUtil.isSameWorldAsConfig(player, plugin)) {
                 PlayerInventory playerInventory = player.getInventory();
                 playerInventory.setContents(InventoryUtil.parse(plugin, playerInventory).getContents());
