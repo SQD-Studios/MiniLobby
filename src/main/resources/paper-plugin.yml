@@ -34,3 +34,10 @@ permissions:
   minilobby.skipinventory:
     description: Skip all the inventory stuff
     default: op
+
+dependencies:
+  server:
+    PlaceholderAPI:
+      load: BEFORE
+      required: false
+      join-classpath: true
