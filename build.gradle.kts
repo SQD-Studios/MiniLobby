@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "net.chamosmp.minilobby"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     maven {
