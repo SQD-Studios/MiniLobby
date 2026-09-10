@@ -1,5 +1,8 @@
 name: "MiniLobby"
 version: "${version}"
+authors:
+  - SQD Studios
+website: https://github.com/SQD-Studios/MiniLobby
 main: net.chamosmp.minilobby.MiniLobbyPlugin
 api-version: "1.21"
 
