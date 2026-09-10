@@ -8,7 +8,9 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.Nullable;
 
 import static net.chamosmp.minilobby.util.InventoryUtil.setInventoryContents;
 import static net.chamosmp.minilobby.util.WorldUtil.isSameWorldAsConfig;
@@ -21,9 +23,10 @@ public class PlayerInventoryListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void onPlayerInteract(InventoryClickEvent event) {
-        if (event.getWhoClicked() instanceof Player p) {
+        @Nullable Inventory clickedInventory = event.getClickedInventory();
+        if (clickedInventory != null && clickedInventory.getHolder() instanceof Player p) {
             event.setCancelled(
                     isSameWorldAsConfig(p, plugin)
             );
